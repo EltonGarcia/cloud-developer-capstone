@@ -58,6 +58,97 @@ custom:
         contentType: application/json
         schema: ${file(src/requests/validations/update-note-request.json)}
 
+functions:
+  Auth:
+    handler: src/lambda/auth/auth0Authorizer.handler
+
+  GetNotes:
+    handler: src/lambda/http/getNotes.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Scan
+          - dynamodb:GetItem
+          - dynamodb:Query
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}/index/${self:provider.environment.NOTES_INDEX}
+    events:
+      - http:
+          method: get
+          path: notes
+          authorizer: Auth
+    
+  CreateNote:
+    handler: src/lambda/http/createNote.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}
+    events:
+      - http:
+          method: post
+          path: notes
+          authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          documentation:
+            summary: Create a note
+            description: Create a note
+            requestModels:
+              'application/json': CreateNoteValidation
+
+  UpdateNote:
+    handler: src/lambda/http/updateNote.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}
+    events:
+      - http:
+          method: patch
+          path: notes/{noteId}
+          authorizer: Auth
+          reqValidatorName: RequestBodyValidator
+          documentation:
+            summary: Update a note
+            description: Update a note
+            requestModels:
+              'application/json': UpdateNoteValidation
+
+  DeleteNote:
+    handler: src/lambda/http/deleteNote.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:DeleteItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}
+    events:
+      - http:
+          method: delete
+          path: notes/{noteId}
+          authorizer: Auth
+
+  GenerateUploadUrl:
+    handler: src/lambda/http/generateUploadUrl.handler
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.NOTES_TABLE}
+      - Effect: Allow
+        Action:
+          - s3:PutObject
+        Resource: arn:aws:s3:::${self:provider.environment.IMAGES_S3_BUCKET}/*  
+    events:
+      - http:
+          method: post
+          path: notes/{noteId}/attachment
+          authorizer: Auth
+
 resources:
   Resources:
     GatewayResponseDefault4XX:
