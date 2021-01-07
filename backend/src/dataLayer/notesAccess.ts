@@ -21,6 +21,22 @@ export class NotesAccess {
     
         return item
     }
+
+    async getUserNotes(userId: string): Promise<Note[]> {
+        console.log('Getting all user notes')
+    
+        const result = await this.docClient.query({
+          TableName: this.notesTable,
+          IndexName: this.indexName,
+          KeyConditionExpression: 'userId = :userId',
+          ExpressionAttributeValues: {
+              ':userId': userId
+          }
+        }).promise()
+    
+        const items = result.Items
+        return items as Note[]
+    }
 }
 
 function createDynamoDBClient() {

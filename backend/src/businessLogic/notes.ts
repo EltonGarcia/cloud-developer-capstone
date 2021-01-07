@@ -21,3 +21,7 @@ export async function createNote(
         favorite: request.favorite
     })
 }
+
+export async function getUserNotes(userId: string): Promise<Note[]> {
+  return notesAccess.getUserNotes(userId)
+}
