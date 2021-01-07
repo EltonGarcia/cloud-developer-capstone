@@ -39,3 +39,21 @@ provider:
         - xray:PutTelemetryRecords
       Resource:
         - "*"
+
+custom:
+  serverless-iam-roles-per-function:
+    defaultInherit: true
+
+  documentation:
+    api:
+      info:
+        version: v1.0.0
+        title: Notes API
+        description: Notes API Project Capstone
+    models:
+      - name: CreateNoteValidation
+        contentType: application/json
+        schema: ${file(src/requests/validations/create-note-request.json)}
+      - name: UpdateNoteValidation
+        contentType: application/json
+        schema: ${file(src/requests/validations/update-note-request.json)}
