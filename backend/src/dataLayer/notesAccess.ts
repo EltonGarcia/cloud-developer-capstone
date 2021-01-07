@@ -54,6 +54,16 @@ export class NotesAccess {
             }
         }).promise()
     }
+
+    async deleteNote(noteId: string, userId: string): Promise<void> {
+        await this.docClient.delete({
+            TableName: this.notesTable,
+            Key: {
+                noteId: noteId,
+                userId: userId,
+            }
+        }).promise()
+    }
 }
 
 function createDynamoDBClient() {

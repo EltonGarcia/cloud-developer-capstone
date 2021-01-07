@@ -30,3 +30,7 @@ export async function getUserNotes(userId: string): Promise<Note[]> {
 export async function updateNote(itemId: string, userId: string, data: UpdateNoteRequest) {
   return notesAccess.updateNote(itemId, userId, data)
 }
+
+export async function deleteNote(itemId: string, userId: string){
+  return notesAccess.deleteNote(itemId, userId)
+}
