@@ -31,6 +31,10 @@ export async function updateNote(itemId: string, userId: string, data: UpdateNot
   return notesAccess.updateNote(itemId, userId, data)
 }
 
-export async function deleteNote(itemId: string, userId: string){
+export async function deleteNote(itemId: string, userId: string) {
   return notesAccess.deleteNote(itemId, userId)
+}
+
+export async function setAttachmentUrl(itemId: string, userId: string, attachmentUrl: string): Promise<void> {
+  return notesAccess.setAttachmentUrl(itemId, userId, attachmentUrl)
 }

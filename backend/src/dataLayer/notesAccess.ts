@@ -64,6 +64,20 @@ export class NotesAccess {
             }
         }).promise()
     }
+
+    async setAttachmentUrl(noteId: string, userId: string, attachmentUrl: string): Promise<void> {
+        await this.docClient.update({
+            TableName: this.notesTable,
+            Key: {
+                noteId,
+                userId,
+            },
+            UpdateExpression: 'set attachmentUrl = :attachmentUrl',
+            ExpressionAttributeValues: {
+                ':attachmentUrl': attachmentUrl,
+            }
+        }).promise();
+    }
 }
 
 function createDynamoDBClient() {
