@@ -5,7 +5,7 @@ import { CreateNoteRequest } from "../requests/CreateNoteRequest";
 
 const notesAccess = new NotesAccess()
 
-export async function createNoteItem(
+export async function createNote(
     request: CreateNoteRequest,
     userId: string
   ): Promise<Note> {
