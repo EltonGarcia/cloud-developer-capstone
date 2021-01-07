@@ -21,3 +21,13 @@ provider:
   tracing:
     lambda: true
     apiGateway: true
+
+  environment:
+    NOTES_TABLE: Notes-${self:provider.stage}
+    NOTES_INDEX: NotesIndex
+    IMAGES_TABLE: Notes-Images-${self:provider.stage}
+    IMAGE_ID_INDEX: ImageIdIndex
+    IMAGES_S3_BUCKET: notes-bucket-capstone-proj-${self:provider.stage}
+    SIGNED_URL_EXPIRATION: 300
+    AUTH_0_SECRET_ID: Auth0Secret-${self:provider.stage}
+    AUTH_0_SECRET_FIELD: auth0Secret
