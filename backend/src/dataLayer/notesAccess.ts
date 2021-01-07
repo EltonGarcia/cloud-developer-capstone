@@ -6,11 +6,20 @@ import { Note } from '../models/Note'
 
 const XAWS = AWSXRay.captureAWS(AWS)
 
-export class TodosAccess {
+export class NotesAccess {
     constructor(
         private readonly docClient: DocumentClient = createDynamoDBClient(),
         private readonly notesTable = process.env.NOTES_TABLE,
         private readonly indexName = process.env.NOTES_INDEX) {
+    }
+
+    async createNote(item: Note): Promise<Note> {
+        await this.docClient.put({
+          TableName: this.notesTable,
+          Item: item
+        }).promise()
+    
+        return item
     }
 }
 
