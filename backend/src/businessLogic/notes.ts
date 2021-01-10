@@ -38,3 +38,7 @@ export async function deleteNote(itemId: string, userId: string) {
 export async function setAttachmentUrl(itemId: string, userId: string, attachmentUrl: string): Promise<void> {
   return notesAccess.setAttachmentUrl(itemId, userId, attachmentUrl)
 }
+
+export async function searchUserNote(userId: string, query: string) {
+  return notesAccess.searchUserNote(userId, query)
+}
