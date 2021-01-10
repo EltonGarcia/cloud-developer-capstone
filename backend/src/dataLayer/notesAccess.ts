@@ -1,5 +1,6 @@
 import * as AWS from 'aws-sdk'
-import * as AWSXRay from 'aws-xray-sdk'
+// import * as AWSXRay from 'aws-xray-sdk'
+const AWSXRay = require('aws-xray-sdk');
 import { DocumentClient } from 'aws-sdk/clients/dynamodb'
 
 import { Note } from '../models/Note'
@@ -48,7 +49,7 @@ export class NotesAccess {
             },
             UpdateExpression: 'set title = :title, content = :content, favorite = :favorite',
             ExpressionAttributeValues: {
-                ':name': item.title,
+                ':title': item.title,
                 ':content': item.content,
                 ':favorite': item.favorite
             }

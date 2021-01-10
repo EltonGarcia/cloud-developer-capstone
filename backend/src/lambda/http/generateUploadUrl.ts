@@ -20,20 +20,23 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     logger.info("Processing event: ", event)
     const userId = getUserId(event)
     const noteId = event.pathParameters.noteId
+    
+    logger.info("Url Expiration is " + urlExpiration)
+    const exp = parseInt(urlExpiration)
     const url = s3.getSignedUrl('putObject', {
         Bucket: bucketName,
         Key: noteId,
-        Expires: urlExpiration
+        Expires: exp
     })
     await setAttachmentUrl(
         noteId,
         userId,
         `https://${bucketName}.s3.amazonaws.com/${noteId}`
-    );
-    return {
-        statusCode: 200,
-        body: JSON.stringify({
-            uploadUrl: url
-        })
-    }
-}
+        );
+        return {
+            statusCode: 200,
+            body: JSON.stringify({
+                uploadUrl: url
+            })
+        }
+}   

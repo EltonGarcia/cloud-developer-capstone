@@ -10,11 +10,9 @@ const logger = createLogger('lambda')
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   logger.info("Processing event: ", event)
   const userId = getUserId(event)
-  const items = await getUserNotes(userId);
+  const items = await getUserNotes(userId)
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      items: items
-    })
+    body: JSON.stringify(items)
   }
 }
