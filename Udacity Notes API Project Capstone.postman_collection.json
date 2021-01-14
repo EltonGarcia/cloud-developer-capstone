@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "5270effe-bf97-4200-bc07-d66bddcf011a",
+		"name": "Udacity Notes API Project Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Note",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Note title\",\n    \"content\": \"Note content\",\n    \"favorite\": false\n}"
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"New Note title\",\n    \"content\": \"New Note content\",\n    \"favorite\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes/9c5da796-7d44-4ea8-a221-4db715f997f3",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes",
+						"9c5da796-7d44-4ea8-a221-4db715f997f3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes/27a25080-ffb5-497c-b918-98d2ae54b319",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes",
+						"27a25080-ffb5-497c-b918-98d2ae54b319"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users Notes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get attachment URL",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes/27a25080-ffb5-497c-b918-98d2ae54b319/attachment",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes",
+						"27a25080-ffb5-497c-b918-98d2ae54b319",
+						"attachment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Note",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/notes/search/",
+					"protocol": "https",
+					"host": [
+						"{{apiId}}",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"notes",
+						"search",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4698de72-011c-4981-aec8-8e66372d8ca6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d1769699-35b9-474d-a9dd-e961399f3e77",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "155f012b-427f-4315-a9da-5d81fdb16dbf",
+			"key": "apiId",
+			"value": "wqzvvustx7"
+		},
+		{
+			"id": "c0d2d4b2-f694-481b-a8d0-de366246c280",
+			"key": "authToken",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InR4OHp6dGM2ZndndnB1UHZILVNOYSJ9.eyJuaWNrbmFtZSI6InVzZXIiLCJuYW1lIjoidXNlckBub3Rlc2FwaS5jb20iLCJwaWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvYzA2MTMyMDVhMjNiMDkzZmQ1MWQxMTliOTIzZjJiMTM_cz00ODAmcj1wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZ1cy5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyMS0wMS0wOFQwMjozNDo1Mi41MjdaIiwiZW1haWwiOiJ1c2VyQG5vdGVzYXBpLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiaXNzIjoiaHR0cHM6Ly9kZXYtbWtmcHE1NmkudXMuYXV0aDAuY29tLyIsInN1YiI6ImF1dGgwfDVmZjdjNDkyZWEzZmM3MDA3ODc3ZWM5OCIsImF1ZCI6InpoSXZ6TWhGUDhSMnBnZTAwZzRwNjlwTHJGQ092RG5RIiwiaWF0IjoxNjEwMjE1NzgyLCJleHAiOjE2MTAyNTE3ODIsIm5vbmNlIjoiSFZWOXZhaE8zeG5pc3Y0NndDb1ZuRksyQkRBRmJFb1lxaElhemVrcHlFTCJ9.Mk_RaILa0idkLBwozOSOLaj-O6Y9exwWLSEm8chEQAknTml4j8DidzmxWdoigGdgIAg37sl7wxrfl7ZdWgw8vZLFm5x3yPP1JDnLYV9c-G22w58vnh23hMaT1GNZKWPOwIrfEX9pWCN4HhvEOOWg6kSBiOCammIw45fePy8haQqE6KnM_3NiWEqu52Dw7LBt9Sqw7frjCFmGSewy6aj9hOMuEA925Z4bNGRpUdvQKMNEwmsKOqk67Jg_3Vr0NyNKGQmcUXXAIIZt10mzHxL5YPk2wAPrqq93e_HYK8vOWtTjaN-JunBEHaAaiCSg-RT8-uJkuWMBe7l0wkxJ6Sjq5w"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
