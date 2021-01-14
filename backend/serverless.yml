@@ -166,8 +166,6 @@ functions:
         Action:
           - es:ESHttpPost
         Resource: !Sub arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/notes-search-${self:provider.stage}/*
-        # arn:${AWS::Partition}:es:${AWS::Region}:${AWS::AccountId}:domain/${domainName}/*
-        # arn:aws:sts::414895321417:assumed-role/notes-app-dev-us-east-1-lambdaRole/notes-app-dev-SearchNote
     events:
       - http:
           method: post
@@ -386,6 +384,5 @@ resources:
               Effect: Allow
               Principal:
                 AWS: !Sub '${AWS::AccountId}'
-                # AWS: !Sub "arn:aws:iam::${AWS::AccountId}:role/service-role/lambda-function-es-role-b44mvudf"
               Action: 'es:ESHttp*'
               Resource: !Sub 'arn:aws:es:${self:provider.region}:${AWS::AccountId}:domain/notes-search-${self:provider.stage}/*'
